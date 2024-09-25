@@ -47,28 +47,11 @@ Then you can run it with `system-manager`, either by installing it, running a de
 nix run 'github:numtide/system-manager' -- switch --flake '.'
 ```
 
-## Testing
+## Nvidia Support
 
-> [!WARNING]
-> If you already have system-manager installed, this will overwrite your configuration!
->
-> See install section for how to install this into your profile.
-
-To install the example system-manager config, you may run the following inside this folder.
-```bash
-nix run 'github:numtide/system-manager' -- switch --flake '.'
+Be aware this is entirely untested, but for a machine running the proprietary nvidia driver, add the following to the config section of the system-manager config.
+```nix
+hardware.opengl.package = linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
 ```
 
-To verify if the graphics drivers work as expected, you can then run.
-```bash
-nix shell nixpkgs\#mesa-demos -c eglgears_wayland
-nix shell nixpkgs\#mesa-demos -c eglgears_x11
-```
-
-Removing system-manager, and subsequently nix-system-opengl, you can run the command.
-```bash
-nix run 'github:numtide/system-manager' -- switch
-# Note, this does not currently seem do remove folders such as `/run/opengl-driver` for you.
-# See: https://github.com/numtide/system-manager/issues/116
-```
-
+There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a spessific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
