@@ -1,0 +1,27 @@
+default_install_hook_types: [pre-commit, pre-push]
+repos:
+- repo: https://github.com/astro/deadnix
+  rev: v1.2.1
+  hooks:
+    - id: deadnix
+      stages: [pre-commit]
+- repo: local
+  hooks:
+  - id: alejandra
+    name: alejandra
+    entry: alejandra
+    language: system
+    files: \.nix$
+    stages: [pre-commit]
+  - id: editorconfig-checker
+    name: editorconfig-checker
+    entry: editorconfig-checker
+    language: system
+    stages: [pre-commit]
+  - id: nix-flake-check
+    name: nix flake check
+    entry: nix flake check
+    language: system
+    files: '.*\.(nix|lock)$'
+    pass_filenames: false
+    stages: [pre-push]
