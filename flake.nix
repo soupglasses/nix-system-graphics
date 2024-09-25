@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "Run graphics accelerated programs built with Nix on any Linux distribution";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.system-manager.url = "github:numtide/system-manager";
