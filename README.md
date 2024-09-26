@@ -51,6 +51,13 @@ nix run 'github:numtide/system-manager' -- switch --flake '.'
 ```
 
 
+## Extra Graphical Packages
+
+> [!IMPORTANT]
+> This section is entirely untested and may not work, so if you have success with this method, please give feedback by [opening a Github issue](https://github.com/soupglasses/nix-system-opengl/issues/new/choose).
+
+VA-API/VDPAU/OpenCL/CUDA.
+
 ## Nvidia Support
 
 > [!IMPORTANT]
@@ -63,14 +70,14 @@ hardware.opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = tr
 # hardware.opengl.package32 = pkgs.pkgsi686Linux.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
 ```
 
-There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a spessific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
+There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a specific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
 
 
 ## But why another Nix with OpenGL project?
 
 While there are existing solutions like [_nixGL_](https://github.com/nix-community/nixGL) and [_nix-gl-host_](https://github.com/numtide/nix-gl-host), they share a significant drawback: they rely on wrapping the execution of a Nix-built binary with internal graphical environment variables, such as `LIBGL_DRIVER_PATH` and `__EGL_VENDOR_LIBRARY_FILENAMES`. You can find the full list of these variables as used by _nixGL_ [here](https://github.com/nix-community/nixGL/blob/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a/nixGL.nix#L53-L62).
 
-While this method works, it introduces a key limitation. If your application running via _nixGL_ calls another application, that second application also needs to support _nixGL’s_ spessific versions of those graphics libraries, as these get propagated down through these environment variables. In simpler terms, system-installed applications tend to crash or behave unpredictably, as seen in this [issue](https://github.com/nix-community/nixGL/issues/116). You could try unsetting these environment variables on a per-application basis after launching, but this process is both error-prone and time-consuming.
+While this method works, it introduces a key limitation. If your application running via _nixGL_ calls another application, that second application also needs to support _nixGL’s_ specific versions of those graphics libraries, as these get propagated down through these environment variables. In simpler terms, system-installed applications tend to crash or behave unpredictably, as seen in this [issue](https://github.com/nix-community/nixGL/issues/116). You could try unsetting these environment variables on a per-application basis after launching, but this process is both error-prone and time-consuming.
 
 Now, in contrast, _nix-system-opengl_ addresses this issue by populating `/run/opengl-driver` in the same way NixOS handles it. This eliminates the need to patch or wrap applications built from the Nix store, as they are already configured to use the `/run/opengl-driver` path by default. Since there’s no need to wrap any binaries, _all system applications work will work flawlessly, even when launched through a Nix-packaged application_. As a result, using Nix-packaged window managers like _i3_ or _sway_, or a graphically accelerated terminal emulator like _alacritty_, becomes a smooth and hassle-free experience, even when calling graphically accelerated system applications.
 
