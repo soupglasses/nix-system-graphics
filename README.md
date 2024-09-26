@@ -5,6 +5,7 @@
 
 Run graphics accelerated programs built with Nix on _any_ Linux distribution.
 
+
 ## Installing with Nix Flakes
 
 While this will be very induvidualized to how your `flake.nix` is written, generally a complete file would look like the following.
@@ -48,6 +49,7 @@ Then you can run it with `system-manager`, either by installing it, running a de
 ```bash
 nix run 'github:numtide/system-manager' -- switch --flake '.'
 ```
+
 
 ## Nvidia Support
 
