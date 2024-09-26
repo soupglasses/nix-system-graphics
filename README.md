@@ -3,7 +3,7 @@
 > [!CAUTION]
 > This repository is __EXPERIMENTAL__. Do not choose to rely on this in a production setting until it has been further tested. If you hit any issues, please [open a Github issue](https://github.com/soupglasses/nix-system-graphics/issues/new/choose).
 
-Run graphics accelerated programs built with Nix on _any_ Linux distribution.
+Run graphics accelerated programs built with Nix on _any_ Linux distribution. Works with both OpenGL and Vulkan seamlessly.
 
 
 ## Installing with Nix Flakes
