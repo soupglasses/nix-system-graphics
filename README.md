@@ -66,4 +66,4 @@ There exists many versions of the NVIDIA driver, and they are typically incompat
 
 ## Acknowledgements
 
-Special thanks goes out to @picnoir who created `nix-gl-host`, who also so kindly helped me with reflecting on the feasabilitiy of this project.
+Special thanks goes out to [@picnoir](https://github.com/picnoir) who created `nix-gl-host`, who also so kindly helped me with reflecting on the feasabilitiy of this project.
