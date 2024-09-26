@@ -66,6 +66,13 @@ hardware.opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = tr
 There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a spessific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
 
 
+## But why another nix with opengl project?
+
+While previous solutions such as `nixGL` and `nix-gl-host` exist, they both share a major limitation by wrapping the call to a nix built binary with graphical environment variables such as `LIBGL_DRIVER_PATH` and `__EGL_VENDOR_LIBRARY_FILENAMES` (you can see the full list [here](https://github.com/nix-community/nixGL/blob/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a/nixGL.nix#L53-L62)). While this approach works, it comes with a key limitation. If your application running through `nixGL` calls another application, that application need to also support `nixGL`'s version of the graphics libraries, since these environment variables get propagated. In other terms means [system installed applications freak out and crash](https://github.com/nix-community/nixGL/issues/116). While you can try to undo the environment by unsetting these per application. Its error prone and labour intensive.
+
+In contrast, `nix-system-opengl` solves this problem is by instead populating `/run/opengl-driver` in the same way that NixOS would do it. This solves the problem of having to patch or wrap applications ran from the nix store, since the relevant packages are already built to point to `/run/opengl-driver` by default. And now since we aren't wrapping any binaries, _all system applications will work flawlessly, even when launched through a nix packaged application_. So using nix packaged window managers like `i3` or `sway`, or a graphically accelerated terminal emulator like `alacritty`, is now a completely seamless experience for both nix and system packages.
+
+
 ## Acknowledgements
 
 Special thanks goes out to [@picnoir](https://github.com/picnoir) who created `nix-gl-host`, who also so kindly helped me with reflecting on the feasabilitiy of this project.
