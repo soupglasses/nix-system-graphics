@@ -9,7 +9,7 @@
 }: let
   inherit (lib) types;
 
-  cfg = config.hardware.opengl;
+  cfg = config.system-opengl;
 
   package = pkgs.buildEnv {
     name = "opengl-drivers";
@@ -22,7 +22,7 @@
   };
 in {
   options = {
-    hardware.opengl = {
+    system-opengl = {
       enable = lib.mkOption {
         description = ''
           Whether to enable OpenGL drivers. This is needed to enable
@@ -119,7 +119,7 @@ in {
       )
     ];
 
-    hardware.opengl.package = lib.mkDefault pkgs.mesa.drivers;
-    hardware.opengl.package32 = lib.mkDefault pkgs.pkgsi686Linux.mesa.drivers;
+    system-opengl.package = lib.mkDefault pkgs.mesa.drivers;
+    system-opengl.package32 = lib.mkDefault pkgs.pkgsi686Linux.mesa.drivers;
   };
 }

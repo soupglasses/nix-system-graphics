@@ -22,6 +22,7 @@
     #
 
     systemModules = {
+      default = self.systemModules.opengl;
       opengl = import ./system/modules/opengl.nix;
     };
 
@@ -30,12 +31,12 @@
 
     systemConfigs.default = system-manager.lib.makeSystemConfig {
       modules = [
-        self.systemModules.opengl
+        self.systemModules.default
         ({...}: {
           config = {
             nixpkgs.hostPlatform = "x86_64-linux";
             system-manager.allowAnyDistro = true;
-            hardware.opengl.enable = true;
+            system-opengl.enable = true;
           };
         })
       ];

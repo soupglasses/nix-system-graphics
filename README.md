@@ -30,12 +30,12 @@ While this will be very induvidualized to how your `flake.nix` is written, but g
   outputs = { self, flake-utils, nixpkgs, system-manager, nix-system-opengl }: {
     systemConfigs.default = system-manager.lib.makeSystemConfig {
       modules = [
-        nix-system-opengl
+        nix-system-opengl.systemModules.default
         ({
           config = {
             nixpkgs.hostPlatform = "x86_64-linux";
             system-manager.allowAnyDistro = true;
-            hardware.opengl.enable = true;
+            system-opengl.enable = true;
           };
         })
       ];
