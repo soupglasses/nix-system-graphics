@@ -65,9 +65,9 @@ VA-API/VDPAU/OpenCL/CUDA.
 
 For a machine running the proprietary nvidia driver, the default mesa drivers will not work. So instead, please add the following to the config section of the system-manager config.
 ```nix
-hardware.opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
-# Only required if you enable `hardware.opengl.driSupport32Bit`
-# hardware.opengl.package32 = pkgs.pkgsi686Linux.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
+system-opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
+# Only required if you enable `system-opengl.driSupport32Bit`
+# system-opengl.package32 = pkgs.pkgsi686Linux.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
 ```
 
 There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a specific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
