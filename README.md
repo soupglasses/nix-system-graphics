@@ -49,9 +49,14 @@ nix run 'github:numtide/system-manager' -- switch --flake '.'
 
 ## Nvidia Support
 
-Be aware this is entirely untested, but for a machine running the proprietary nvidia driver, add the following to the config section of the system-manager config.
+> [!IMPORTANT]
+> This section is entirely untested and may not work, so if you have success with this method, please give feedback by [opening a Github issue](https://github.com/soupglasses/nix-system-opengl/issues/new/choose).
+
+For a machine running the proprietary nvidia driver, the default mesa drivers will not work. So instead, please add the following to the config section of the system-manager config.
 ```nix
-hardware.opengl.package = linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
+hardware.opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
+# Only required if you enable `hardware.opengl.driSupport32Bit`
+# hardware.opengl.package32 = pkgs.pkgsi686Linux.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
 ```
 
 There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a spessific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
