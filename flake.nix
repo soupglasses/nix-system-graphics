@@ -22,8 +22,8 @@
     #
 
     systemModules = {
-      default = self.systemModules.opengl;
-      opengl = import ./system/modules/opengl.nix;
+      default = self.systemModules.graphics;
+      graphics = import ./system/modules/graphics.nix;
     };
 
     # -- System Configurations --
@@ -36,7 +36,7 @@
           config = {
             nixpkgs.hostPlatform = "x86_64-linux";
             system-manager.allowAnyDistro = true;
-            system-opengl.enable = true;
+            system-graphics.enable = true;
           };
         })
       ];
