@@ -8,7 +8,7 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution.
 
 ## Installing with Nix Flakes
 
-While this will be very induvidualized to how your `flake.nix` is written, generally a complete file would look like the following.
+While this will be very induvidualized to how your `flake.nix` is written, but generally a complete file would look like the following.
 
 ```nix
 {
