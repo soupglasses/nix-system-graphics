@@ -44,15 +44,11 @@ in {
         default = false;
       };
 
-      package = lib.mkPackageOption pkgs "mesa.drivers" {
-        description = ''
-          The package that provides the default driver set.
-        '';
-      };
+      package = lib.mkPackageOption pkgs ["mesa" "drivers"] {};
 
-      package32 = lib.mkPackageOption pkgs "pkgsi686Linux.mesa.drivers" {
-        description = ''
-          The package that provides the 32-bit driver set. Used when {option}`enable32Bit` is enabled.
+      package32 = lib.mkPackageOption pkgs ["pkgsi686Linux" "mesa" "drivers"] {
+        extraDescription = ''
+          Used when {option}`enable32Bit` is enabled.
         '';
       };
 
