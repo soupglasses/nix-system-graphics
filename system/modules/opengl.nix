@@ -27,11 +27,7 @@ in {
         description = ''
           Whether to enable OpenGL drivers. This is needed to enable
           OpenGL support in X11 systems, as well as for Wayland compositors
-          like sway and Weston. It is enabled by default
-          by the corresponding modules, so you do not usually have to
-          set it yourself, only if there is no module for your wayland
-          compositor of choice. See services.xserver.enable and
-          programs.sway.enable.
+          like sway and Weston.
         '';
         type = types.bool;
         default = false;
