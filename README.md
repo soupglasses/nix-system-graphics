@@ -62,3 +62,8 @@ hardware.opengl.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = tr
 ```
 
 There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a spessific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
+
+
+## Acknowledgements
+
+Special thanks goes out to @picnoir who created `nix-gl-host`, who also so kindly helped me with reflecting on the feasabilitiy of this project.
