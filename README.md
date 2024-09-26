@@ -56,7 +56,9 @@ nix run 'github:numtide/system-manager' -- switch --flake '.'
 > [!IMPORTANT]
 > This section is entirely untested and may not work, so if you have success with this method, please give feedback by [opening a Github issue](https://github.com/soupglasses/nix-system-opengl/issues/new/choose).
 
-VA-API/VDPAU/OpenCL/CUDA.
+You should be able to add VA-API/VDPAU/OpenCL/CUDA support similarly as you would in NixOS. Just add the relevant packages to `system-opengl.extraPackages` and possibly `system-opengl.extraPackages32` if needed. Due to the variety of libraries that could possibly be added here, I recommend to read up on the relevant NixOS Wiki pages.
+
+[Accelerated Video Playback](https://nixos.wiki/wiki/Accelerated_Video_Playback) | [AMD OpenCL](https://nixos.wiki/wiki/AMD_GPU#OpenCL) | [Nvidia CUDA](https://nixos.wiki/wiki/CUDA)
 
 ## Nvidia Support
 
