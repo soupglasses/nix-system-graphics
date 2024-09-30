@@ -1,15 +1,20 @@
+# SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
 default_install_hook_types: [pre-commit, pre-push]
 repos:
-- repo: https://github.com/astro/deadnix
-  rev: v1.2.1
-  hooks:
-    - id: deadnix
-      stages: [pre-commit]
 - repo: local
   hooks:
   - id: alejandra
     name: alejandra
     entry: alejandra
+    language: system
+    files: \.nix$
+    stages: [pre-commit]
+  - id: deadnix
+    name: deadnix
+    entry: deadnix --fail
     language: system
     files: \.nix$
     stages: [pre-commit]
@@ -25,3 +30,9 @@ repos:
     files: '.*\.(nix|lock)$'
     pass_filenames: false
     stages: [pre-push]
+  - id: reuse
+    name: reuse
+    entry: reuse lint
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]

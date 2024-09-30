@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
 {
   description = "Run graphics accelerated programs built with Nix on any Linux distribution";
 
@@ -55,6 +58,7 @@
           alejandra
           deadnix
           editorconfig-checker
+          reuse
         ];
       };
     });

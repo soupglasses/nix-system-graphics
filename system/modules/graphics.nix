@@ -1,6 +1,7 @@
-# Copyright (c) 2003-2024 Eelco Dolstra and the Nixpkgs/NixOS contributors
-# Copyright (c) 2024 SoupGlasses
-# See LICENSE file for license terms.
+# SPDX-FileCopyrightText: 2003-2024 Eelco Dolstra and the Nixpkgs/NixOS contributors
+# SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
 {
   config,
   pkgs,

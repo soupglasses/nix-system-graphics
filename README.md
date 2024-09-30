@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Abhiram <axel@foss.life>
+SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Nix System Graphics
 
 > [!CAUTION]
