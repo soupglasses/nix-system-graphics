@@ -5,13 +5,10 @@
   description = "Run graphics accelerated programs built with Nix on any Linux distribution";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.system-manager.url = "github:numtide/system-manager";
-  inputs.system-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = {
     self,
     nixpkgs,
-    system-manager,
   }: let
     systems = ["aarch64-linux" "x86_64-linux"];
     eachSystem = f:
@@ -22,7 +19,7 @@
         });
   in {
     # -- System Modules --
-    #
+    # Holds re-usable system modules meant for systemConfigs to include.
 
     systemModules = {
       default = self.systemModules.graphics;
@@ -30,20 +27,27 @@
     };
 
     # -- System Configurations --
-    #
+    # Holds Nix system configurations for Linux computers.
 
-    systemConfigs.default = system-manager.lib.makeSystemConfig {
-      modules = [
-        self.systemModules.default
-        ({...}: {
-          config = {
-            nixpkgs.hostPlatform = "x86_64-linux";
-            system-manager.allowAnyDistro = true;
-            system-graphics.enable = true;
-          };
-        })
-      ];
-    };
+    systemConfigs.default = let
+      system-manager = builtins.fetchTarball {
+        url = "https://github.com/soupglasses/system-manager-lite/archive/40ec3633e4cf41fa01dbf144cec0b18e03810197.tar.gz";
+        sha256 = "0gkd1sjffll9il9w3vvyk6ypra6i8x1cvx7wbhy352s3xbp233nm";
+      };
+      system-manager-lib = import "${system-manager}/nix/lib.nix" {inherit nixpkgs;};
+    in
+      system-manager-lib.makeSystemConfig {
+        modules = [
+          self.systemModules.default
+          ({...}: {
+            config = {
+              nixpkgs.hostPlatform = "x86_64-linux";
+              system-manager.allowAnyDistro = true;
+              system-graphics.enable = true;
+            };
+          })
+        ];
+      };
 
     # -- Development Shells --
     # Scoped environments including packages and shell-hooks to aid project development.

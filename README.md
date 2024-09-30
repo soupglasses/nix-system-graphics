@@ -30,7 +30,6 @@ While this will be very induvidualized to how your `flake.nix` is written, but g
     nix-system-graphics = {
       url = "github:soupglasses/nix-system-graphics";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.system-manager.follows = "system-manager";
     };
   };
 
