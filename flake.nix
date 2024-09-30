@@ -29,14 +29,17 @@
     # -- System Configurations --
     # Holds Nix system configurations for Linux computers.
 
-    systemConfigs.default = let
+    systemConfigs = let
+      # Use fetchTarball to import system-manager within the example
+      # systemConfigs to prevent dependants from needing to override it if it
+      # instead was imported as a flake input.
       system-manager = builtins.fetchTarball {
         url = "https://github.com/soupglasses/system-manager-lite/archive/40ec3633e4cf41fa01dbf144cec0b18e03810197.tar.gz";
         sha256 = "0gkd1sjffll9il9w3vvyk6ypra6i8x1cvx7wbhy352s3xbp233nm";
       };
       system-manager-lib = import "${system-manager}/nix/lib.nix" {inherit nixpkgs;};
-    in
-      system-manager-lib.makeSystemConfig {
+    in {
+      default = system-manager-lib.makeSystemConfig {
         modules = [
           self.systemModules.default
           ({...}: {
@@ -48,6 +51,7 @@
           })
         ];
       };
+    };
 
     # -- Development Shells --
     # Scoped environments including packages and shell-hooks to aid project development.
