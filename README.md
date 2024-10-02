@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 
 <p align="center">
-    <img width="512" height="512" src="./static/nix-system-graphics.svg">
+    <img width="256" height="256" src="./static/nix-system-graphics.svg">
 </p>
 
 # Nix System Graphics
