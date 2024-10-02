@@ -5,6 +5,10 @@ SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
+<p align="center">
+    <img width="512" height="512" src="./static/nix-system-graphics.svg">
+</p>
+
 # Nix System Graphics
 
 Run graphics accelerated programs built with Nix on _any_ Linux distribution. Works with both OpenGL and Vulkan seamlessly.
