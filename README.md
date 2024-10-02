@@ -7,9 +7,6 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Nix System Graphics
 
-> [!CAUTION]
-> This repository is __EXPERIMENTAL__. Do not choose to rely on this in a production setting until it has been further tested. If you hit any issues, please [open a Github issue](https://github.com/soupglasses/nix-system-graphics/issues/new/choose).
-
 Run graphics accelerated programs built with Nix on _any_ Linux distribution. Works with both OpenGL and Vulkan seamlessly.
 
 
@@ -60,7 +57,7 @@ nix run 'github:numtide/system-manager' -- switch --flake '.'
 ## Extra Graphical Packages
 
 > [!IMPORTANT]
-> This section is entirely untested and may not work, so if you have success with this method, please give feedback by [opening a Github issue](https://github.com/soupglasses/nix-system-graphics/issues/new/choose).
+> This section is currently under testing and may not work as expected, so if you hit any issues or simply have success with this method, please [give feedback in the following Github issue #4](https://github.com/soupglasses/nix-system-graphics/issues/4).
 
 You should be able to add VA-API/VDPAU/OpenCL/CUDA support similarly as you would in NixOS. Just add the relevant packages to `system-graphics.extraPackages` and `system-graphics.extraPackages32` as needed. Due to the variety of libraries that could possibly be added here, I recommend to read up on the relevant NixOS Wiki pages.
 
@@ -69,7 +66,7 @@ You should be able to add VA-API/VDPAU/OpenCL/CUDA support similarly as you woul
 ## Nvidia Support
 
 > [!IMPORTANT]
-> This section is entirely untested and may not work, so if you have success with this method, please give feedback by [opening a Github issue](https://github.com/soupglasses/nix-system-graphics/issues/new/choose).
+> This section is currently under testing and may not work as expected, so if you hit any issues or simply have success with this method, please [give feedback in the following Github issue #5](https://github.com/soupglasses/nix-system-graphics/issues/5).
 
 For a machine running the proprietary nvidia driver, the default mesa drivers will not work. So instead, please add the following to the config section of the system-manager config.
 ```nix
