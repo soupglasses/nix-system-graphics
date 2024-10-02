@@ -18,7 +18,7 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution. Wo
 | Works with AMD/Intel? (Mesa)                    |     ✅     |        ❌        |            ✅            |
 | Works with Nvidia? (Proprietary)                |     ✅     |        ✅        |            ✅            |
 | Works with `nix run nixpkgs#...`?               |     ⚠️¹    |        ⚠️¹       |            ✅            |
-| A Nix GPU program can trigger a GPU system app? |     ❌²    |        ❌²       |            ✅            |
+| Nix program can launch system apps?             |     ❌²    |        ❌²       |            ✅            |
 | Is it Open Source?                              |     ❌³    |  ✅ (Apache-2.0) |         ✅ (MIT)         |
 
 1. Requires wrapping `nix run` with their wrapper before it works.
