@@ -82,6 +82,12 @@ Then you can run it with `system-manager`, either by installing it, running a de
 nix run 'github:numtide/system-manager' -- switch --flake '.'
 ```
 
+To verify that the driver is functioning, you may run the following command.
+
+```bash
+nix shell 'nixpkgs#mesa-demos' --command glxgears
+```
+
 
 ## Extra Graphical Packages
 
