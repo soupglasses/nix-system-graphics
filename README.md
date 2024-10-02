@@ -10,6 +10,22 @@ SPDX-License-Identifier: CC-BY-4.0
 Run graphics accelerated programs built with Nix on _any_ Linux distribution. Works with both OpenGL and Vulkan seamlessly.
 
 
+## Comparison Table
+
+|                                                 | **NixGL** | **nix-host-gl** | **nix-system-graphics** |
+|-------------------------------------------------|:---------:|:---------------:|:-----------------------:|
+| Requires no wrapping? (no `nixgl ...`)          |     ❌     |        ❌        |            ✅            |
+| Works with AMD/Intel? (Mesa)                    |     ✅     |        ❌        |            ✅            |
+| Works with Nvidia? (Proprietary)                |     ✅     |        ✅        |            ✅            |
+| Works with `nix run nixpkgs#...`?               |     ⚠️¹    |        ⚠️¹       |            ✅            |
+| A Nix GPU program can trigger a GPU system app? |     ❌²    |        ❌²       |            ✅            |
+| Is it Open Source?                              |     ❌³    |  ✅ (Apache-2.0) |         ✅ (MIT)         |
+
+1. Requires wrapping `nix run` with their wrapper before it works.
+2. Can be done in very select cases under certain setups by manually changing internal variables. [Example](https://github.com/nix-community/nixGL/issues/116#issuecomment-1265042706).
+3. NixGL is proprietary as it has no license information. See [this Github issue](https://github.com/nix-community/nixGL/issues/143) for more information.
+
+
 ## Installing with Nix Flakes
 
 While this will be very induvidualized to how your `flake.nix` is written, but generally a complete file would look like the following.
