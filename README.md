@@ -10,6 +10,15 @@ SPDX-License-Identifier: CC-BY-4.0
 Run graphics accelerated programs built with Nix on _any_ Linux distribution. Works with both OpenGL and Vulkan seamlessly.
 
 
+## Table of contents
+- [Comparison Table](#comparison-table)
+- [Installing with Nix Flakes](#installing-with-nix-flakes)
+- [Extra Graphical Packages](#extra-graphical-packages)
+- [Nvidia Support](#nvidia-support)
+- [But why another Nix-with-OpenGL project?](#but-why-another-nix-with-opengl-project)
+- [Acknowledgements](#acknowledgements)
+
+
 ## Comparison Table
 
 |                                                 | **NixGL** | **nix-host-gl** | **nix-system-graphics** |
