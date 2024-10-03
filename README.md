@@ -41,7 +41,7 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution. Wo
 
 ## Installing with Nix Flakes
 
-Ensure you have Nix installed with Flakes support enabled. You can do this by installing [Lix](https://lix.systems/install/) or using one of the [nix-installers](https://nix-community.github.io/nix-installers/). Lastly, you may also [enable it manually](https://nixos.wiki/wiki/Flakes#Other_Distros.2C_without_Home-Manager) if you installed Nix with another approach that didn't enable Flakes support.
+Ensure you have Nix installed with Flakes support enabled. If you do not have Nix installed already, you can do this by installing [Lix](https://lix.systems/install/) or using one of the [nix-installers](https://nix-community.github.io/nix-installers/) which enable this automatically. Alternatively, you may also [enable Flakes support manually](https://nixos.wiki/wiki/Flakes#Other_Distros.2C_without_Home-Manager) if you have installed Nix with another approach, but didn't enable Flakes support for you.
 
 Now, adding a system-manager config will be very individualized to how your `flake.nix` is written, but generally a complete file would look like the following.
 
