@@ -41,7 +41,9 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution. Wo
 
 ## Installing with Nix Flakes
 
-While this will be very induvidualized to how your `flake.nix` is written, but generally a complete file would look like the following.
+Ensure you have Nix installed with Flakes support enabled. You can do this by installing [Lix](https://lix.systems/install/) or using one of the [nix-installers](https://nix-community.github.io/nix-installers/). Lastly, you may also [enable it manually](https://nixos.wiki/wiki/Flakes#Other_Distros.2C_without_Home-Manager) if you installed Nix with another approach that didn't enable Flakes support.
+
+Now, adding a system-manager config will be very individualized to how your `flake.nix` is written, but generally a complete file would look like the following.
 
 ```nix
 {
@@ -76,17 +78,18 @@ While this will be very induvidualized to how your `flake.nix` is written, but g
 }
 ```
 
-Then you can run it with `system-manager`, either by installing it, running a development shell, or run directly from their flake URL.
+Then you can change into your system-manager config by using the `system-manager` package, either by installing it, running it in a development shell, or running it directly from the upstream flake URL, which we will do here.
 
 ```bash
 nix run 'github:numtide/system-manager' -- switch --flake '.'
 ```
 
-To verify that the driver is functioning, you may run the following command.
+Lastly, to verify that the driver is now functioning on your system, you may run the following command.
 
 ```bash
 nix shell 'nixpkgs#mesa-demos' --command glxgears
 ```
+
 
 ## Extra Graphical Packages
 
