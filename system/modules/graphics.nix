@@ -100,5 +100,17 @@ in {
         else "r /run/opengl-driver-32"
       )
     ];
+
+    system-manager.preActivationAssertions.systemGraphicsEnsureNoNixOS = {
+      enable = true;
+      script = ''
+        source /etc/os-release
+        if [ $ID = "nixos" ]; then
+          echo "You cannot run nix-system-graphics on a NixOS system."
+          echo "Please use the 'hardware.graphics' module in NixOS instead."
+          exit 1
+        fi
+      '';
+    };
   };
 }
