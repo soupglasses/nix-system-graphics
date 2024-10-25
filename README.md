@@ -110,10 +110,12 @@ For a machine running the proprietary nvidia driver, the default mesa drivers wi
 ```nix
 system-graphics.package = pkgs.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
 # Only required if you enable `system-graphics.enable32Bit`
-# system-graphics.package32 = pkgs.pkgsi686Linux.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; };
+system-graphics.package32 = (pkgs.linuxPackages.nvidia_x11.override { libsOnly = true; kernel = null; }).lib32;
 ```
 
-There exists many versions of the NVIDIA driver, and they are typically incompatible with one another. So extra attention should be put on [pinning the NVIDIA driver to a specific version](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions). You should be able to see the current NVIDA driver version using the command `cat /proc/driver/nvidia/version`.
+There exists multiple versions of the NVIDIA driver, and they are typically incompatible with one another. So pay extra attention on [pinning the NVIDIA driver to the correct major version](https://nixos.wiki/wiki/Nvidia#Determining_the_Correct_Driver_Version). You should be able to see the current NVIDA driver version you have by running the command `cat /proc/driver/nvidia/version`.
+
+If you still have issues, you can try to pin your driver to the [spessific version you are using manually](https://nixos.wiki/wiki/Nvidia#Running_Specific_NVIDIA_Driver_Versions), filling out the sha256 sums with `lib.fakeSha256` and removing them as you rebuild. This step however should generally not be needed, and the major version should be enough.
 
 ## But why another Nix-with-OpenGL project?
 
