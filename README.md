@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2024 Abhiram <axel@foss.life>
 SPDX-FileCopyrightText: 2024 SoupGlasses <sofi+git@mailbox.org>
+SPDX-FileCopyrightText: 2025 SoupGlasses <sofi+git@mailbox.org>
 
 SPDX-License-Identifier: CC-BY-4.0
 -->
@@ -29,7 +30,7 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution. Wo
 |---|:-:|:-:|:-:|
 | Requires no wrapping? (no `nixgl ...`) | ❌ | ❌ | ✅ |
 | Works with AMD/Intel? (Mesa) | ✅ | ❌ | ✅ |
-| Works with Nvidia? (Proprietary) | ✅ | ✅ | ✅ |
+| Works with Nvidia? (Proprietary) | ✅ | ✅ | ⚠️[⁴](#ref-4) |
 | Works with `nix run nixpkgs#...`? | ⚠️[¹](#ref-1) | ⚠️[¹](#ref-1) | ✅ |
 | Nix program can launch system apps? | ❌[²](#ref-2) | ❌[²](#ref-2) | ✅ |
 | Is it Open Source? | ❌[³](#ref-3) | ✅ (Apache-2.0) | ✅ (MIT) |
@@ -37,6 +38,7 @@ Run graphics accelerated programs built with Nix on _any_ Linux distribution. Wo
 1. <a name="ref-1"></a> Requires wrapping `nix run` with their wrapper before it works.
 2. <a name="ref-2"></a> Can be done in very select cases under certain setups by manually changing internal variables. [Example](https://github.com/nix-community/nixGL/issues/116#issuecomment-1265042706).
 3. <a name="ref-3"></a> NixGL is proprietary as it has no license information. See [this Github issue](https://github.com/nix-community/nixGL/issues/143) for more information.
+4. <a name="ref-4"></a> While Nvidia is functional in nix-system-graphics, it requires manual effort to be kept in sync with the __exact__ version of the host. See [this Github comment](https://github.com/soupglasses/nix-system-graphics/issues/5#issuecomment-2443771338) for how this is done. [nix-gl-host](https://github.com/numtide/nix-gl-host/) may be a better alternative if the other above features of nix-system-graphics is not required, and a set-and-forget approach is desired.
 
 
 ## Installing with Nix Flakes
